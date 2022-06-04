@@ -1,4 +1,4 @@
-package com.jota.course;
+package com.jota.course.application;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
