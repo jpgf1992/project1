@@ -1,7 +1,7 @@
 package com.jota.course.application.services;
 
 import com.jota.course.application.entities.Usuario;
-import com.jota.course.application.repositories.UserReposiory;
+import com.jota.course.application.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +12,7 @@ import java.util.Optional;
 public class UserService {
 
     @Autowired
-    private UserReposiory reposiory;
+    private UserRepository reposiory;
 
     public List<Usuario> findAll() {
         return reposiory.findAll();
