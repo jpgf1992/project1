@@ -2,6 +2,7 @@ package com.jota.course.application.services;
 
 import com.jota.course.application.entities.Usuario;
 import com.jota.course.application.repositories.UserRepository;
+import com.jota.course.application.services.Exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +22,7 @@ public class UserService {
 
     public Usuario findById(Long id){
        Optional<Usuario> obj = reposiory.findById(id);
-       return obj.get();
+       return obj.orElseThrow(()->new ResourceNotFoundException(id));
     }
 
     public Usuario insert(Usuario obj){
