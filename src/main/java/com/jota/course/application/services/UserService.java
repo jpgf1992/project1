@@ -2,8 +2,11 @@ package com.jota.course.application.services;
 
 import com.jota.course.application.entities.Usuario;
 import com.jota.course.application.repositories.UserRepository;
+import com.jota.course.application.services.Exceptions.DataBaseExeption;
 import com.jota.course.application.services.Exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
@@ -30,7 +33,14 @@ public class UserService {
     }
 
     public void delete(Long id){
-        reposiory.deleteById(id);
+        try{
+            reposiory.deleteById(id);
+        } catch (EmptyResultDataAccessException e){
+            throw new ResourceNotFoundException(id);
+        } catch (DataIntegrityViolationException e){
+            throw new DataBaseExeption(e.getMessage());
+        }
+
     }
 
     public Usuario update(Long id, Usuario obj){
